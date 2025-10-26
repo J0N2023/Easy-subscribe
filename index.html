@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Subscribe – YouTube Subscriber Exchange</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- App root -->
+    <div id="app" class="app-root">
+      <!-- ================= LOGIN VIEW ================= -->
+      <section id="login-view" class="view auth-view">
+        <div class="auth-card">
+          <h1 class="mb-16">Easy&nbsp;Subscribe</h1>
+          <form id="login-form" class="flex flex-col gap-16 w-100">
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                class="form-control"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center gap-4">
+                <input type="checkbox" id="remember-me" />
+                <span>Remember me</span>
+              </label>
+              <a href="#forgot" class="text-sm">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn--primary">Login</button>
+            <button type="button" id="google-signin" class="btn btn--outline">
+              Sign in with Google
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============== USER DASHBOARD VIEW ============== -->
+      <section id="dashboard-view" class="view hidden">
+        <!-- Top navbar -->
+        <nav class="navbar">
+          <div class="navbar__left">
+            <span class="logo">Easy&nbsp;Subscribe</span>
+          </div>
+          <div class="navbar__center flex items-center gap-16">
+            <span class="coin-display status--info" id="coin-balance">0&nbsp;coins</span>
+          </div>
+          <div class="navbar__right flex items-center gap-16">
+            <button id="notify-btn" class="btn btn--outline btn--sm" title="Notifications">
+              🔔
+            </button>
+            <div class="dropdown" id="profile-dropdown">
+              <button class="btn btn--secondary btn--sm" id="profile-btn">👤</button>
+              <div class="dropdown__menu hidden" id="profile-menu">
+                <button data-nav="settings" class="dropdown__item">Settings</button>
+                <button data-nav="change-password" class="dropdown__item">Change Password</button>
+                <button id="logout-btn" class="dropdown__item">Logout</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container py-16" id="dashboard-content">
+          <h2 class="mb-16" id="welcome-msg">Welcome, User</h2>
+
+          <!-- Stats cards -->
+          <div class="stats-grid" id="stats-cards"></div>
+
+          <!-- Create Campaign -->
+          <div class="card mt-8" id="create-campaign-card">
+            <div class="card__body flex flex-col gap-16">
+              <h3>Create Campaign</h3>
+              <form id="create-campaign-form" class="flex flex-col gap-16">
+                <div class="form-group">
+                  <label class="form-label" for="channel-url">YouTube Channel URL</label>
+                  <input
+                    type="url"
+                    id="channel-url"
+                    class="form-control"
+                    placeholder="https://youtube.com/@yourchannel"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="subscriber-slider"
+                    >Subscribers Wanted: <span id="sub-count">10</span></label
+                  >
+                  <input
+                    type="range"
+                    id="subscriber-slider"
+                    min="10"
+                    max="1000"
+                    value="10"
+                  />
+                </div>
+                <p>
+                  Coins required:
+                  <strong id="coins-required">100</strong>
+                </p>
+                <button
+                  type="submit"
+                  id="create-campaign-btn"
+                  class="btn btn--primary"
+                >
+                  Create Campaign
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Available Campaigns -->
+          <h3 class="mt-8 mb-8">Available Campaigns</h3>
+          <div class="campaign-grid" id="available-campaigns"></div>
+
+          <!-- My Campaigns -->
+          <h3 class="mt-16 mb-8">My Campaigns</h3>
+          <div class="table-wrapper">
+            <table class="data-table" id="my-campaigns-table">
+              <thead>
+                <tr>
+                  <th>Channel Name</th>
+                  <th>Target Subs</th>
+                  <th>Current Subs</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== SETTINGS VIEW ============== -->
+      <section id="settings-view" class="view hidden container py-16">
+        <h2 class="mb-16">Account Settings</h2>
+        <form id="settings-form" class="flex flex-col gap-16" style="max-width: 480px">
+          <div class="form-group">
+            <label class="form-label" for="setting-name">Name</label>
+            <input id="setting-name" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="setting-email">Email</label>
+            <input id="setting-email" type="email" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="setting-channel">YouTube Channel URL</label>
+            <input id="setting-channel" type="url" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn--primary">Save Changes</button>
+          <button type="button" class="btn btn--outline" data-nav="dashboard">Cancel</button>
+        </form>
+      </section>
+
+      <!-- ============== CHANGE PASSWORD VIEW ============== -->
+      <section id="change-password-view" class="view hidden container py-16" style="max-width: 480px">
+        <h2 class="mb-16">Change Password</h2>
+        <form id="change-password-form" class="flex flex-col gap-16">
+          <div class="form-group">
+            <label class="form-label" for="current-pass">Current Password</label>
+            <input id="current-pass" type="password" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-pass">New Password</label>
+            <input id="new-pass" type="password" class="form-control" required />
+            <div id="strength-text" class="mt-8 text-sm"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="confirm-pass">Confirm New Password</label>
+            <input id="confirm-pass" type="password" class="form-control" required />
+            <div id="match-text" class="mt-8 text-sm"></div>
+          </div>
+          <ul id="pass-req-list" class="pass-req-list text-sm"></ul>
+          <button type="submit" id="change-pass-btn" class="btn btn--primary" disabled>
+            Change Password
+          </button>
+          <button type="button" class="btn btn--outline" data-nav="dashboard">Cancel</button>
+        </form>
+      </section>
+
+      <!-- ============== ADMIN LOGIN VIEW ============== -->
+      <section id="admin-login-view" class="view auth-view hidden">
+        <div class="auth-card">
+          <h1 class="mb-16">Admin Portal</h1>
+          <form id="admin-login-form" class="flex flex-col gap-16 w-100">
+            <div class="form-group">
+              <label class="form-label" for="admin-user">Username</label>
+              <input id="admin-user" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-pass">Password</label>
+              <input id="admin-pass" type="password" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-2fa">Two-Factor Code (optional)</label>
+              <input id="admin-2fa" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn--primary">Login</button>
+            <a href="#" data-nav="login" class="text-sm">Back to user login</a>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============== ADMIN DASHBOARD VIEW ============== -->
+      <section id="admin-dashboard-view" class="view hidden">
+        <div class="admin-layout">
+          <!-- Sidebar -->
+          <aside class="sidebar" id="admin-sidebar">
+            <h2 class="sidebar__brand">Easy&nbsp;Subscribe</h2>
+            <nav class="sidebar__nav flex flex-col gap-8 mt-16">
+              <button class="sidebar__item" data-admin-page="overview">Dashboard</button>
+              <button class="sidebar__item" data-admin-page="users">Users</button>
+              <button class="sidebar__item" data-admin-page="campaigns">Campaigns</button>
+              <button class="sidebar__item" data-admin-page="coins">Coins &amp; Transactions</button>
+              <button class="sidebar__item" id="admin-logout-btn">Logout</button>
+            </nav>
+          </aside>
+
+          <!-- Main -->
+          <main class="admin-main" id="admin-main">
+            <!-- Overview page -->
+            <div id="admin-page-overview" class="admin-page">
+              <h2 class="mb-16">Admin Dashboard</h2>
+              <div class="stats-grid" id="admin-kpis"></div>
+              <div class="charts-grid mt-16">
+                <div class="card">
+                  <div class="card__body" style="height: 320px">
+                    <canvas id="user-growth-chart"></canvas>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card__body" style="height: 320px">
+                    <canvas id="campaign-bar-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Users page -->
+            <div id="admin-page-users" class="admin-page hidden">
+              <h2 class="mb-16">Users Management</h2>
+              <div class="table-wrapper">
+                <table class="data-table" id="admin-users-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Coins</th>
+                      <th>Status</th>
+                      <th>Joined</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Campaigns page -->
+            <div id="admin-page-campaigns" class="admin-page hidden">
+              <h2 class="mb-16">Campaign Management</h2>
+              <div class="table-wrapper">
+                <table class="data-table" id="admin-campaigns-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>User</th>
+                      <th>Channel</th>
+                      <th>Target</th>
+                      <th>Current</th>
+                      <th>Coins</th>
+                      <th>Status</th>
+                      <th>Created</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Coins & Transactions page -->
+            <div id="admin-page-coins" class="admin-page hidden">
+              <h2 class="mb-16">Coin Settings &amp; Transactions</h2>
+              <form id="coin-settings-form" class="flex gap-16 flex-wrap mb-16">
+                <div class="form-group">
+                  <label class="form-label" for="earn-rate">Earn per Subscription</label>
+                  <input id="earn-rate" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cost-rate">Cost per Subscriber</label>
+                  <input id="cost-rate" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="daily-bonus">Daily Login Bonus</label>
+                  <input id="daily-bonus" type="number" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn--primary">Save</button>
+              </form>
+              <div class="table-wrapper">
+                <table class="data-table" id="transaction-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>User</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Balance After</th>
+                      <th>Date &amp; Time</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

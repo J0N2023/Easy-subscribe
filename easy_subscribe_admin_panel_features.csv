@@ -1,0 +1,47 @@
+Module,Feature,Description,Priority
+Dashboard,User Statistics,"Display total users, active users, new registrations",High
+Dashboard,Campaign Metrics,"Show total campaigns, active campaigns, completed campaigns",High
+Dashboard,Revenue Analytics,"Track earnings from ads, in-app purchases, and subscriptions",High
+Dashboard,Coin Distribution Chart,Visualize coin flow and economy health,Medium
+Dashboard,Recent Activity Log,Display recent user actions and system events,Medium
+User Management,View All Users,"Paginated list with search, filter, and sort options",High
+User Management,User Details,"View complete user profile, activity, and transaction history",High
+User Management,Create User,Manually add new users to the system,Low
+User Management,Edit User,"Modify user information, roles, and permissions",High
+User Management,Delete User,Soft/hard delete users with confirmation,Medium
+User Management,Ban/Unban User,Suspend or restore user access,High
+User Management,Reset Password,Generate password reset link or temporary password,High
+User Management,Export Users,Download user data in CSV/PDF format,Medium
+Campaign Management,View Campaigns,List all subscription campaigns with filters,High
+Campaign Management,Campaign Details,"View campaign performance, subscribers gained, coins spent",High
+Campaign Management,Approve/Reject,Review and approve new campaigns for policy compliance,High
+Campaign Management,Pause Campaign,Temporarily halt campaign execution,Medium
+Campaign Management,Delete Campaign,Remove campaigns that violate policies,Medium
+Campaign Management,Progress Tracking,Monitor real-time campaign completion status,High
+Coin Management,Set Coin Rates,Define earning and spending rates for subscriptions,High
+Coin Management,Coin Transaction History,"View all coin transfers, earnings, and spending",High
+Coin Management,Adjust User Coins,Manually add or deduct coins from user accounts,Medium
+Coin Management,Reward System,Configure daily bonuses and rewards,Medium
+Payment Settings,Configure Payment Gateway,"Set up payment processors (PayPal, Stripe, etc.)",High
+Payment Settings,In-App Purchase Pricing,Define coin package prices and deals,High
+Payment Settings,Transaction History,View all payment transactions and refunds,High
+Payment Settings,Revenue Reports,Generate financial reports and analytics,High
+Notifications,Send Push Notifications,Broadcast messages to all or specific users,High
+Notifications,Email Templates,Customize automated email notifications,Medium
+Notifications,Notification History,View sent notifications and delivery status,Low
+Settings,General Settings,"Configure app name, logo, and basic information",Medium
+Settings,Security Settings,"Set password policies, session timeouts, 2FA",High
+Settings,API Configuration,Manage YouTube API keys and rate limits,High
+Settings,Email Configuration,Set up SMTP settings for automated emails,Medium
+Settings,Admin Roles,Define admin user roles and permissions,High
+Reports,User Activity Report,Generate reports on user engagement and activity,Medium
+Reports,Campaign Performance,Analyze campaign success rates and trends,Medium
+Reports,Revenue Report,Financial summary and income breakdown,High
+Reports,Export Reports,"Download reports in PDF, CSV, or Excel format",Medium
+Security,Activity Logs,Track all admin actions for audit trail,High
+Security,Login History,Monitor admin login attempts and sessions,High
+Security,Two-Factor Authentication,Enable 2FA for admin accounts,High
+Security,IP Whitelist,Restrict admin access to specific IP addresses,Medium
+Support,User Support Tickets,Manage user inquiries and issues,Medium
+Support,Live Chat Integration,Enable real-time support communication,Low
+Support,FAQ Management,Create and update frequently asked questions,Low

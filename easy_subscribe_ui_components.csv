@@ -1,0 +1,36 @@
+Component Type,Element,Purpose,Design Pattern
+Navigation,Sidebar Menu,Main navigation for all admin sections,Collapsible with icons and labels
+Navigation,Top Bar,"User profile, notifications, quick actions",Fixed header with dropdown menus
+Navigation,Breadcrumbs,Show current location in hierarchy,Text links with separators
+Dashboard Widgets,Stat Cards,"Display key metrics (users, campaigns, revenue)","Card layout with icon, number, trend indicator"
+Dashboard Widgets,Line Chart,"Show trends over time (user growth, revenue)",Interactive chart with tooltips
+Dashboard Widgets,Bar Chart,Compare categories (campaign performance),Vertical/horizontal bars with labels
+Dashboard Widgets,Pie/Donut Chart,"Show distribution (coin usage, user types)",Colorful segments with percentages
+Dashboard Widgets,Recent Activity,Display latest user actions,List with timestamps and user avatars
+Data Tables,User Table,List all users with sortable columns,"Striped rows, pagination, search, filters"
+Data Tables,Campaign Table,Display all campaigns with status indicators,"Color-coded status badges, action buttons"
+Data Tables,Action Buttons,"Edit, delete, view details options",Icon buttons with tooltips
+Data Tables,Bulk Actions,Select multiple items for batch operations,Checkboxes with action toolbar
+Forms,User Creation Form,Add new users to system,Multi-field form with validation
+Forms,Password Change Form,Allow password updates,Current password + new password fields with strength meter
+Forms,Settings Form,Configure system settings,Grouped fields with save/cancel buttons
+Forms,Input Validation,Real-time form validation,"Inline error messages, success indicators"
+Modals,Confirmation Dialog,"Confirm destructive actions (delete, ban)","Overlay with title, message, confirm/cancel buttons"
+Modals,User Details Modal,Show detailed user information,Large modal with tabs for different data sections
+Modals,Edit Modal,Quick edit functionality,Form in modal for inline editing
+Notifications,Toast Notifications,Show success/error messages,Slide-in notifications with auto-dismiss
+Notifications,Alert Banners,Display important system messages,Full-width colored banner at top
+Notifications,Badge Indicators,Show unread count on notification icon,Small numbered badge on icon
+Buttons,Primary Action,"Main actions (Save, Submit, Create)",Filled button with brand color
+Buttons,Secondary Action,"Alternative actions (Cancel, Back)",Outlined or ghost button
+Buttons,Danger Action,"Destructive actions (Delete, Ban)",Red filled button
+Buttons,Icon Button,Quick actions in tables,Icon only with tooltip
+Colors & Themes,Light Theme,Default bright theme,"White/light gray backgrounds, dark text"
+Colors & Themes,Dark Theme,Eye-friendly dark mode,"Dark backgrounds, light text"
+Colors & Themes,Status Colors,Visual status indicators,"Green (success), Red (error), Yellow (warning), Blue (info)"
+Typography,Headings,Section titles and headers,"Bold, larger font size, hierarchy (H1-H6)"
+Typography,Body Text,Regular content,"Readable font, appropriate line height"
+Typography,Labels,Form field labels,"Smaller, bold or semi-bold"
+Responsive Design,Mobile Layout,Optimized for small screens,"Stacked layout, hamburger menu, touch-friendly buttons"
+Responsive Design,Tablet Layout,Medium screen optimization,"Condensed sidebar, responsive tables"
+Responsive Design,Desktop Layout,Full feature display,"Full sidebar, multi-column layout"
