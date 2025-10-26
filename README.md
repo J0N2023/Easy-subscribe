@@ -1,1 +1,1 @@
-# Easy-subscribe
+Easy subscribe 
